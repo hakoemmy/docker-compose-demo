@@ -1,0 +1,30 @@
+version: '3.7'
+services:
+  learn-docker-compose:
+    container_name: learn-docker-compose
+    build: .
+    volumes:
+      - .:/app/
+      - /app/node_modules
+    ports:
+      - 3000:3000
+    environment:
+      DATABASE_URL: postgres://postgres@postgres/docker_compose_test
+      PORT: 3000
+      
+    depends_on:
+      - postgres
+    links:
+      - postgres
+
+  postgres:
+    container_name: postgres
+    restart: always
+    image: postgres:13.4-alpine
+    ports:
+      - 5433:5432
+    environment:
+     POSTGRES_USER: postgres
+     POSTGRES_DB: docker_compose_test
+
+

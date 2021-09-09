@@ -31,8 +31,10 @@
   "scripts": {
     "start": "node --require @babel/polyfill build/index.js",
     "dev-start": "nodemon --exec babel-node ./src/index.js",
-    "db-migrate": "sequelize db:migrate",
-    "db-seed": "sequelize db:seed:all"
+    "db-migrate": "npx sequelize-cli db:migrate",
+    "db-seed": "npx sequelize-cli db:seed:all",
+    "build-src": "babel -d ./build ./src -s",
+    "build": "npm run build-src"
   },
   "repository": {
     "type": "git",
